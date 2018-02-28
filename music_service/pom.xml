@@ -5,7 +5,7 @@
   <groupId>org.vladositto</groupId>
   <artifactId>music_service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>music_service</name>
   <url>http://maven.apache.org</url>
