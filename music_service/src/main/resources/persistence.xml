@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XML>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="JPASample" transaction-type="RESOURCE_LOCAL" >
+		<class>org.vladositto.music_service.Song</class>
+<!-- 		<class>edu.kpi.domain.User</class> -->
+<!-- 		<class>edu.kpi.domain.Order</class> -->
+<!-- 		<class>edu.kpi.domain.CartItem</class> -->
+	</persistence-unit>
+</persistence>
