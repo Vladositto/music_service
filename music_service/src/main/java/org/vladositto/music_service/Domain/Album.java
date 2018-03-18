@@ -1,51 +1,96 @@
 package org.vladositto.music_service.Domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="albums")
+@Table(name = "albums")
 public class Album {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int year;
 	private String genre;
 	private String title;
-	public Album(int id, int year, String genre, String title) {
+	@ManyToOne
+	private Artist artist;
+
+	@OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
+	private Set<Song> songs = new HashSet<Song>();;
+
+	public Album(int year, String genre, String title) {
 		super();
-		this.id = id;
 		this.year = year;
 		this.genre = genre;
 		this.title = title;
 	}
+
 	public Album() {
 		super();
 	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+	public Set<Song> getSongs() {
+		return songs;
+	}
+
+	public void setSongs(Set<Song> songs) {
+		this.songs = songs;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getYear() {
 		return year;
 	}
+
 	public void setYear(int year) {
 		this.year = year;
 	}
+
 	public String getGenre() {
 		return genre;
 	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public void addSong(Song song) {
+		song.setAlbum(this);
+		this.songs.add(song);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -56,6 +101,7 @@ public class Album {
 		result = prime * result + year;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -81,11 +127,10 @@ public class Album {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", year=" + year + ", genre=" + genre + ", title=" + title + "]";
 	}
-	
-	
-	
+
 }

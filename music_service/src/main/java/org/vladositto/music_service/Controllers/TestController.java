@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.vladositto.music_service.Domain.Album;
+import org.vladositto.music_service.Domain.Artist;
 import org.vladositto.music_service.Domain.Song;
+import org.vladositto.music_service.Services.AlbumService;
+import org.vladositto.music_service.Services.ArtistService;
 import org.vladositto.music_service.Services.SongService;
 
 @Controller
@@ -15,16 +19,33 @@ import org.vladositto.music_service.Services.SongService;
 public class TestController {
 	@Autowired
 	private SongService songService;
+	@Autowired
+	private AlbumService albumService;
+	@Autowired
+	private ArtistService artistService;
 
-//	@ModelAttribute
-//	public Cart createCart() {
-//		return new Cart();
-//	}
-
-	@RequestMapping(value = "/items.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/top.do", method = RequestMethod.GET)
 	public String showItems(Model model) {
 
-		List<Song> list;
+//		Artist artist1 = new Artist("Dimiliri", "Ukraine", "Поп-группа, радующая глаз");
+//		
+//		Album album1 = new Album();
+//		album1.setGenre("pop");
+//		album1.setTitle("Вверх");
+//		album1.setYear(2018);
+//		
+//		artist1.addAlbum(album1);
+//		artistService.create(artist1);
+//		
+//		Song song1 = new Song();
+//		song1.setTitle("Шаг вперед");
+//		
+//		album1.addSong(song1);
+//		albumService.create(album1);
+//		
+//		songService.create(song1);
+		
+		List <Song> list;
 		list = songService.getAllSong();
 		
 		model.addAttribute("songs", list);

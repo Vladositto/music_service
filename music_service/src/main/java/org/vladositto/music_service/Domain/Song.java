@@ -1,7 +1,10 @@
 package org.vladositto.music_service.Domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -9,16 +12,18 @@ import javax.persistence.Table;
 public class Song {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	@ManyToOne
+	private Album album;
 
 	public Song() {
 		super();
 	}
 
-	public Song(int id, String title) {
+	public Song(String title, Album album) {
 		super();
-		this.id = id;
 		this.title = title;
 	}
 
@@ -36,6 +41,15 @@ public class Song {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
 	@Override
