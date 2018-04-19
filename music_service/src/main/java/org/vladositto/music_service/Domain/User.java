@@ -28,6 +28,10 @@ public class User {
 		this.admin = admin;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean isAdmin() {
 		return admin;
 	}

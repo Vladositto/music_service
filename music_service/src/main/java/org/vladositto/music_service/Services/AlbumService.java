@@ -1,7 +1,5 @@
 package org.vladositto.music_service.Services;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;

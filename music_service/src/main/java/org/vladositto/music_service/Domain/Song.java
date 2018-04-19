@@ -1,9 +1,12 @@
 package org.vladositto.music_service.Domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,6 +20,8 @@ public class Song {
 	private String title;
 	@ManyToOne
 	private Album album;
+	@ManyToMany
+	private Set<Playlist> playlist;
 
 	public Song() {
 		super();
@@ -43,13 +48,20 @@ public class Song {
 		this.title = title;
 	}
 
-	
 	public Album getAlbum() {
 		return album;
 	}
 
 	public void setAlbum(Album album) {
 		this.album = album;
+	}
+
+	public Set<Playlist> getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(Set<Playlist> playlist) {
+		this.playlist = playlist;
 	}
 
 	@Override
@@ -85,5 +97,4 @@ public class Song {
 		return "Song [id=" + id + ", title=" + title + "]";
 	}
 
-	
 }

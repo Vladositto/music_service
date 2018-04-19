@@ -27,23 +27,27 @@ public class TestController {
 	@RequestMapping(value = "/top.do", method = RequestMethod.GET)
 	public String showItems(Model model) {
 
-//		Artist artist1 = new Artist("Dimiliri", "Ukraine", "Поп-группа, радующая глаз");
-//		
-//		Album album1 = new Album();
-//		album1.setGenre("pop");
-//		album1.setTitle("Вверх");
-//		album1.setYear(2018);
-//		
-//		artist1.addAlbum(album1);
-//		artistService.create(artist1);
-//		
-//		Song song1 = new Song();
-//		song1.setTitle("Шаг вперед");
-//		
-//		album1.addSong(song1);
-//		albumService.create(album1);
-//		
-//		songService.create(song1);
+		Artist artist1 = new Artist("Dimiliri", "Ukraine", "Поп-группа, радующая глаз");
+		
+		Album album1 = new Album();
+		album1.setGenre("pop");
+		album1.setTitle("Вверх");
+		album1.setYear(2018);
+		
+		artist1.addAlbum(album1);
+		artistService.create(artist1);
+		
+		Song song1 = new Song();
+		song1.setTitle("Шаг вперед");
+		Song song2 = new Song();
+		song2.setTitle("Вверх");
+		
+		album1.addSong(song2);
+		album1.addSong(song1);
+		albumService.create(album1);
+		
+		songService.create(song1);
+		songService.create(song2);
 		
 		List <Song> list;
 		list = songService.getAllSong();
