@@ -13,7 +13,8 @@
 		$(document).ready(function() {
 			$('#get_content').click(function() {
 				$.ajax({
-					url: '/top.do',
+					url: '#get_content',
+					data: ({url: $(this).find("href").val()})
 					cache: false,
 					beforeSend: function() { $('#content').html('Please wait...'); },
 					success: function(html) { $('#content').html(html); }
@@ -24,8 +25,6 @@
 		</script>
 	</head>
 	<body>
-
-		<div id="wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
@@ -76,7 +75,7 @@
 						<div class="col-md-2"></div>
 						<div class="col-md-8">
 							<a id="get_content" href="#">press on me!</a>
-							<div id="content" class="content-block  container-fluid">
+							<div class="content-block  container-fluid">
 								<div class="track-list">
 									<div class="track-in-list">
 										<div class="track-left-column">

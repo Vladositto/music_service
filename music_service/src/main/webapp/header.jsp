@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-			<a class="navbar-brand" href="#">МузLike</a>
+			<a class="navbar-brand link" href="<c:url value="/"/>">МузLike</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -40,6 +40,3 @@
 
 	</div>
 </div>
-
-<script src="resources/js/jquery.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
