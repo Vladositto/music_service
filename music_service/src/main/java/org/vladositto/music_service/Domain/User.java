@@ -1,6 +1,9 @@
 package org.vladositto.music_service.Domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -9,12 +12,14 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column( nullable = true)
+	private int id = 0;
 	private String login;
 	private String password;
 	private String name;
 	private String email;
-	private boolean admin;
+	private boolean admin = false;
 	@OneToOne
 	private Playlist playlist;
 
