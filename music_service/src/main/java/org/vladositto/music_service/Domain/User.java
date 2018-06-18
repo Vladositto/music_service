@@ -1,5 +1,6 @@
 package org.vladositto.music_service.Domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class User {
 	private String name;
 	private String email;
 	private boolean admin = false;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Playlist playlist;
 
 	public User(int id, String login, String password, String name, String email, boolean admin) {

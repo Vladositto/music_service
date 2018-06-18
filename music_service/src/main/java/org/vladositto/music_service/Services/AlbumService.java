@@ -24,6 +24,9 @@ public class AlbumService {
 		return albumRepository.findById(id);
 	}
 
+	public List<Album> getAlbumsByArtistId(int artist_id) {
+		return albumRepository.findByArtistId(artist_id);
+	}
 	
 	public int getCountAllItems() {
 		return albumRepository.countAllItems();

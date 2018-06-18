@@ -135,3 +135,12 @@
 .dropdown-menuLeft {
     left: -100;
 }
+
+.genre{
+	display: inline-block;
+	border: 1px solid #0000ff;
+	padding: 5px;
+	margin: 2px;
+	border-radius: 10px;
+	border-width: 5px;
+}

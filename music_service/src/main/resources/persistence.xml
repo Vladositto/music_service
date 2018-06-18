@@ -4,7 +4,8 @@
 	<persistence-unit name="JPASample" transaction-type="RESOURCE_LOCAL" >
 		<class>org.vladositto.music_service.Domain.Song</class>
  		<class>org.vladositto.music_service.Domain.User</class>
-<!-- 		<class>edu.kpi.domain.Order</class> -->
-<!-- 		<class>edu.kpi.domain.CartItem</class> -->
+ 		<class>org.vladositto.music_service.Domain.Artist</class>
+ 		<class>org.vladositto.music_service.Domain.Album</class>
+ 		<class>org.vladositto.music_service.Domain.Playlist</class> 		
 	</persistence-unit>
 </persistence>

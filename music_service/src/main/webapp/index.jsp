@@ -15,7 +15,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 						<div id="content">
-							<!-- HERE -->
+						<!-- Динамічний контент -->
 						</div>
 					</div>
 					<div class="col-md-2"></div>

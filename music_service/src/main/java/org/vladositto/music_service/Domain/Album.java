@@ -24,8 +24,8 @@ public class Album {
 	@ManyToOne
 	private Artist artist;
 
-	@OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
-	private Set<Song> songs = new HashSet<Song>();;
+	@OneToMany(mappedBy = "album", fetch = FetchType.EAGER) //lazy
+	private Set<Song> songs = new HashSet<Song>();
 
 	public Album(int year, String genre, String title) {
 		super();

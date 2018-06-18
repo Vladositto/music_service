@@ -1,14 +1,19 @@
 package org.vladositto.music_service.Domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "songs")
@@ -20,8 +25,10 @@ public class Song {
 	private String title;
 	@ManyToOne
 	private Album album;
-	@ManyToMany
-	private Set<Playlist> playlist;
+	 @ManyToMany(fetch = FetchType.EAGER,
+	            cascade = CascadeType.MERGE)
+
+	private Set<Playlist> playlist = new HashSet<Playlist>();
 
 	public Song() {
 		super();

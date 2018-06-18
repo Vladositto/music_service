@@ -20,8 +20,8 @@ public class Artist {
 	private String name;
 	private String country;
 	private String bio;
-	@OneToMany(mappedBy = "artist", fetch = FetchType.LAZY)
-	private Set<Album> albums = new  HashSet<Album>();;
+	@OneToMany(mappedBy = "artist", fetch = FetchType.EAGER) // lazy
+	private Set<Album> albums = new  HashSet<Album>();
 
 	public Artist(String name, String country, String bio) {
 		super();

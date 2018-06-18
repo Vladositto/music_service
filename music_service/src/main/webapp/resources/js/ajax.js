@@ -107,9 +107,22 @@ function AjaxInit() {
 	$('a[href]').on('click', function(e) {
 		e.preventDefault();
 	});
-
+	$('.like').click(function(){
+	            var id_song =$(this).parents('.track-in-list').attr("id");
+	            $.ajax({
+	                type:"POST",
+	                url: './likeSong.do',
+	                data: {
+	                    id:id_song,
+	                },
+	                success: function (msg){
+	                   // $("#itemCnt").text(msg);
+	                }
+	            });
+	        });
 	$('.play-button').click(
 			function() {
+				$('ul.songs').empty();
 				$('.pause-button').find('img').hide();
 				$(this).parent().find('.pause-button').find('img').show();
 				$('.song').empty();

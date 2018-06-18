@@ -23,6 +23,8 @@ import org.vladositto.music_service.Services.AlbumService;
 import org.vladositto.music_service.Services.ArtistService;
 import org.vladositto.music_service.Services.SongService;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 @Controller
 // @SessionAttributes(value = { "login", "cart" })
 public class TestController {
@@ -53,6 +55,11 @@ public class TestController {
 
 		model.addAttribute("songs", list);
 		return "top"; // items
+	}
+	
+	@RequestMapping(value = "/genre.do", method = RequestMethod.POST)
+	public String showGenresPage() {
+		return "genres";
 	}
 	
 	@RequestMapping(value = "/getHeader.do", method = RequestMethod.GET)

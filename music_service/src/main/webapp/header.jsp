@@ -22,8 +22,8 @@
 						<li class="nav-item active"><a class="nav-link link"
 							href="<c:url value="/top.do"/>">Топ</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Рекомендации</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Жанры</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Моя
+						<li class="nav-item"><a class="nav-link link" href="<c:url value="/genre.do"/>">Жанры</a></li>
+						<li class="nav-item"><a class="nav-link link" href="<c:url value="/likes.do"/>">Моя
 								музыка</a></li>
 					</ul>
 					<!-- 				<ul class="navbar-nav"> -->

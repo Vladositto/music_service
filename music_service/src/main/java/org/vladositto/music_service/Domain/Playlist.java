@@ -1,22 +1,46 @@
 package org.vladositto.music_service.Domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import javax.persistence.JoinColumn;
 @Entity
 @Table (name = "playlists")
 public class Playlist {
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column( nullable = true)
+	private int id = 0;
 	@OneToOne(mappedBy = "playlist")
 	private User user;
-	@ManyToMany(mappedBy = "playlist")
-	private Set<Song> songs;
+	 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	 @JoinTable(name = "playlist_song",
+     joinColumns = @JoinColumn(name = "playlist_id"),
+     inverseJoinColumns = @JoinColumn(name = "song_id"))
+	private Set<Song> songs = new HashSet<Song>();
+
+	
+	public Playlist(int id) {
+		this.id = id;
+
+	}
+	public Playlist() {
+
+	}
 
 	public User getUser() {
 		return user;

@@ -55,6 +55,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		 <url-pattern>*.do</url-pattern>
+		<url-pattern>/music_service/</url-pattern>
 	</servlet-mapping>
 </web-app>

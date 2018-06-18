@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.vladositto.music_service.Domain.Song;
 import org.vladositto.music_service.Domain.User;
 import org.vladositto.music_service.Repository.UserRepository;
 
@@ -25,6 +26,9 @@ public class UserService {
 		User user = userRepository.findByLogin(login);
 		return user != null && user.getPassword() != null && user.getPassword().equals(password);
 
+	}
+	public User findByLogin(String login) {
+		return userRepository.findByLogin(login);
 	}
 
 	public boolean isAdmin(final String login) {

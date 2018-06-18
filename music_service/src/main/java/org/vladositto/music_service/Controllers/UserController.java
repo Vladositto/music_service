@@ -1,6 +1,8 @@
 package org.vladositto.music_service.Controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.vladositto.music_service.Controllers.beans.RegistrationBean;
+import org.vladositto.music_service.Domain.Playlist;
+import org.vladositto.music_service.Domain.Song;
 import org.vladositto.music_service.Domain.User;
+import org.vladositto.music_service.Services.PlaylistService;
+import org.vladositto.music_service.Services.SongService;
 import org.vladositto.music_service.Services.UserService;
 
 @Controller
@@ -37,6 +43,10 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PlaylistService playlistService;
+	@Autowired
+	private SongService songService;
 
 	@RequestMapping(value = "/getLogin.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -118,7 +128,34 @@ public class UserController {
 			return "profile";
 		}
 	}
+	@RequestMapping(value = "/likes.do", method = RequestMethod.POST)
+	public String showLikes(HttpSession session, Model model) {
+		if (session.getAttribute(PARAM_LOGIN) == null) {
+			return "forward:/login.do";
+		} else {
+			User user = userService.findByLogin(session.getAttribute(PARAM_LOGIN).toString());
+			List <Song> list = new ArrayList<Song>();;
+			list.addAll(user.getPlaylist().getSongs());
+			model.addAttribute("likes", list);
+		//	list = songService.getAllSong();
 
+			//model.addAttribute("songs", list);
+			return "likes";
+		}
+	}
+	@RequestMapping(value = "/likeSong.do", method = RequestMethod.POST)
+	public String likeSong(HttpSession session, Model model, @RequestParam("id") int id) {
+		if (session.getAttribute(PARAM_LOGIN) == null) {
+			return "forward:/login.do";
+		} else {
+			User user = userService.findByLogin(session.getAttribute(PARAM_LOGIN).toString());
+			Song song = songService.getById(id);
+			Playlist playlist = user.getPlaylist();
+			playlist.addSong(song);
+			playlistService.update(playlist);
+			return "likes";
+		}
+	}
 	private Map<String, String> validate(RegistrationBean bean) {
 		Map<String, String> errors = new HashMap<String, String>();
 		validateString(bean.getLogin(), "\\w{2,16}", PARAM_LOGIN, errors);
@@ -145,6 +182,9 @@ public class UserController {
 
 	private User transformToDomain(RegistrationBean bean) {
 		User user = new User();
+		Playlist playlist = new Playlist();
+		playlistService.create(playlist);
+		user.setPlaylist(playlist);
 		user.setLogin(bean.getLogin());
 		user.setPassword(bean.getPassword1());
 		user.setEmail(bean.getEmail());
